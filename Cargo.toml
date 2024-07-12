@@ -3,9 +3,6 @@ name = "iceoryx2-test"
 version = "0.1.0"
 edition = "2021"
 
-[[bin]]
-name = "test_rr_channel"
-path = "bin/test_rr_channel.rs"
 
 [[bin]]
 name = "test_pub_loan"

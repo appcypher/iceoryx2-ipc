@@ -1,4 +1,4 @@
-// Request - Reply
+// Request - Reply (Response Channel)
 
 use std::time::Duration;
 
@@ -41,6 +41,7 @@ pub enum Tag {
 #[derive(Debug, Default, PlacementDefault)]
 pub struct Request {
     pub tag: u64,
+    pub retry: u64,
     pub reply_channel: Option<FixedSizeByteString<TEXT_CAPACITY>>,
     pub payload: FixedSizeVec<u8, PAYLOAD_CAPACITY>,
 }
@@ -52,22 +53,25 @@ fn client() -> anyhow::Result<()> {
     let request_service = node
         .service_builder("test/request".try_into()?)
         .publish_subscribe::<Request>()
-        .max_publishers(1)
+        .max_publishers(16)
         .max_subscribers(1)
         .open_or_create()?;
 
     let publisher = request_service.publisher_builder().create()?;
 
+    let mut retries = 0;
     while let NodeEvent::Tick = node.wait(LONG_CYCLE_TIME) {
         // Send request.
 
         let sample = publisher.loan_uninit()?;
         let sample = sample.write_payload(Request {
             tag: Tag::Cbor as u64,
+            retry: retries,
             reply_channel: Some(b"test/reply".into()),
             payload: FixedSizeVec::new(),
         });
         sample.send()?;
+        retries += 1;
         println!("Request Sent");
 
         // Now wait for response.
@@ -84,7 +88,7 @@ fn client() -> anyhow::Result<()> {
         let subscriber = reply_service.subscriber_builder().create()?;
         while let NodeEvent::Tick = node.wait(SHORT_CYCLE_TIME) {
             while let Some(sample) = subscriber.receive()? {
-                println!("Response Recieved: {:?}", sample.reply_channel);
+                println!("Response Recieved: {:?}, retry: {}", sample.header(), sample.payload().retry);
             }
         }
     }
@@ -109,7 +113,7 @@ fn server() -> anyhow::Result<()> {
         while let Some(sample) = subscriber.receive()? {
             // Recieve request.
 
-            println!("Request Recieved: {:?}", sample.reply_channel);
+            println!("Request Recieved: {:?}, retry: {}", sample.header(), sample.payload().retry);
 
             // Now send response.
 
@@ -123,14 +127,24 @@ fn server() -> anyhow::Result<()> {
 
             let publisher = reply_service.publisher_builder().create()?;
 
-            let sample = publisher.loan_uninit()?;
-            let sample = sample.write_payload(Request {
-                tag: Tag::Cbor as u64,
-                reply_channel: None,
-                payload: FixedSizeVec::new(),
-            });
-            sample.send()?;
-            println!("Response Sent");
+            let mut retries = 0;
+            while let NodeEvent::Tick = node.wait(SHORT_CYCLE_TIME) {
+                if retries > 10 {
+                    break;
+                }
+
+                let sample = publisher.loan_uninit()?;
+                let sample = sample.write_payload(Request {
+                    tag: Tag::Cbor as u64,
+                    retry: retries,
+                    reply_channel: None,
+                    payload: FixedSizeVec::new(),
+                });
+                sample.send()?;
+                println!("Response Sent");
+
+                retries += 1;
+            }
         }
     }
 

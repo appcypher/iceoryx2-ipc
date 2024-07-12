@@ -4,8 +4,12 @@ version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "test_rr"
-path = "bin/test_rr.rs"
+name = "test_rr_channel"
+path = "bin/test_rr_channel.rs"
+
+[[bin]]
+name = "test_pub_loan"
+path = "bin/test_pub_loan.rs"
 
 [[bin]]
 name = "test_pubsub"
@@ -18,8 +22,10 @@ path = "bin/test_event.rs"
 
 [dependencies]
 anyhow = "1.0.86"
+bytes = "1.6.0"
 iceoryx2 = { git = "https://github.com/eclipse-iceoryx/iceoryx2", rev = "46f8b60", features = [
     "logger_tracing",
 ] }
 iceoryx2-bb-container = { git = "https://github.com/eclipse-iceoryx/iceoryx2", rev = "46f8b60" }
 thiserror = "1.0.61"
+tokio = { version = "1.38.0", features = ["io-util"] }

@@ -3,14 +3,9 @@ name = "iceoryx2-test"
 version = "0.1.0"
 edition = "2021"
 
-
 [[bin]]
-name = "test_pub_loan"
-path = "bin/test_pub_loan.rs"
-
-[[bin]]
-name = "test_pubsub"
-path = "bin/test_pubsub.rs"
+name = "test_pub_sub"
+path = "bin/test_pub_sub.rs"
 
 [[bin]]
 name = "test_pub_queue"

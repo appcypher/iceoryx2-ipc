@@ -7,7 +7,7 @@ fn main() -> anyhow::Result<()> {
     let arg = match std::env::args().nth(1) {
         Some(arg) => arg,
         None => {
-            eprintln!("Usage: test_pubsub <arg>");
+            eprintln!("Usage: test_pub_queue <arg>");
             std::process::exit(1);
         }
     };

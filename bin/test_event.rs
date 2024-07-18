@@ -27,7 +27,7 @@ fn listener() -> anyhow::Result<()> {
     println!("Listener");
 
     let node = NodeBuilder::new().create::<zero_copy::Service>()?;
-    let service = node.service_builder("test/path".try_into()?)
+    let service = node.service_builder(&"test/path".try_into()?)
         .event()
         .max_notifiers(1)
         .max_listeners(1)
@@ -48,7 +48,7 @@ fn notifier() -> anyhow::Result<()> {
     println!("Notifier");
 
     let node = NodeBuilder::new().create::<zero_copy::Service>()?;
-    let service = node.service_builder("test/path".try_into()?)
+    let service = node.service_builder(&"test/path".try_into()?)
         .event()
         .max_notifiers(1)
         .max_listeners(1)

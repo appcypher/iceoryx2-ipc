@@ -21,7 +21,8 @@ fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-const CYCLE_TIME: Duration = Duration::from_secs(1);
+const CYCLE_TIME: Duration = Duration::from_secs(3);
+const BUFFER_SIZE: usize = 5;
 
 fn subscriber() -> anyhow::Result<()> {
     println!("Subscriber");
@@ -32,9 +33,13 @@ fn subscriber() -> anyhow::Result<()> {
         .publish_subscribe::<u64>()
         .max_publishers(1)
         .max_subscribers(1)
+        .subscriber_max_buffer_size(BUFFER_SIZE)
+        .enable_safe_overflow(false)
         .open_or_create()?;
 
-    let subscriber = service.subscriber_builder().create()?;
+    let subscriber = service
+        .subscriber_builder()
+        .create()?;
 
     while let NodeEvent::Tick = node.wait(CYCLE_TIME) {
         while let Some(sample) = subscriber.receive()? {
@@ -54,16 +59,23 @@ fn publisher() -> anyhow::Result<()> {
         .publish_subscribe::<u64>()
         .max_publishers(1)
         .max_subscribers(1)
+        .subscriber_max_buffer_size(BUFFER_SIZE)
+        .enable_safe_overflow(false)
         .open_or_create()?;
 
-    let publisher = service.publisher_builder().max_loaned_samples(1).create()?;
-    let sample = publisher.loan_uninit()?;
-    let _ = sample.write_payload(1234);
+    let publisher = service
+        .publisher_builder()
+        .unable_to_deliver_strategy(UnableToDeliverStrategy::Block)
+        .create()?;
 
-    while let NodeEvent::Tick = node.wait(CYCLE_TIME) {
+    let mut count = 0;
+    while let NodeEvent::Tick = node.wait(CYCLE_TIME / 10) {
         let sample = publisher.loan_uninit()?;
+        let sample = sample.write_payload(count);
         sample.send()?;
-        println!("Sent existing");
+        println!("Sent: {}", count);
+
+        count += 1;
     }
 
     Ok(())

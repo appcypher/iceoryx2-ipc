@@ -27,7 +27,7 @@ fn subscriber() -> anyhow::Result<()> {
     println!("Subscriber");
 
     let node = NodeBuilder::new().create::<zero_copy::Service>()?;
-    let service = node.service_builder("test/path".try_into()?)
+    let service = node.service_builder(&"test/path".try_into()?)
         .publish_subscribe::<u64>()
         .max_publishers(1)
         .max_subscribers(1)
@@ -48,7 +48,7 @@ fn publisher() -> anyhow::Result<()> {
     println!("Publisher");
 
     let node = NodeBuilder::new().create::<zero_copy::Service>()?;
-    let service = node.service_builder("test/path".try_into()?)
+    let service = node.service_builder(&"test/path".try_into()?)
         .publish_subscribe::<u64>()
         .max_publishers(1)
         .max_subscribers(1)

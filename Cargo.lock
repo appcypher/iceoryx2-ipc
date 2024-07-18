@@ -234,7 +234,7 @@ dependencies = [
 [[package]]
 name = "iceoryx2"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "cdr",
  "iceoryx2-bb-container",
@@ -257,7 +257,7 @@ dependencies = [
 [[package]]
 name = "iceoryx2-bb-container"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "iceoryx2-bb-derive-macros",
  "iceoryx2-bb-elementary",
@@ -269,7 +269,7 @@ dependencies = [
 [[package]]
 name = "iceoryx2-bb-derive-macros"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "iceoryx2-bb-elementary",
  "proc-macro2",
@@ -280,7 +280,7 @@ dependencies = [
 [[package]]
 name = "iceoryx2-bb-elementary"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "iceoryx2-pal-concurrency-sync",
 ]
@@ -288,7 +288,7 @@ dependencies = [
 [[package]]
 name = "iceoryx2-bb-lock-free"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "iceoryx2-bb-elementary",
  "iceoryx2-bb-log",
@@ -299,7 +299,7 @@ dependencies = [
 [[package]]
 name = "iceoryx2-bb-log"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "iceoryx2-pal-concurrency-sync",
  "termsize",
@@ -309,7 +309,7 @@ dependencies = [
 [[package]]
 name = "iceoryx2-bb-memory"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "iceoryx2-bb-elementary",
  "iceoryx2-bb-lock-free",
@@ -323,7 +323,7 @@ dependencies = [
 [[package]]
 name = "iceoryx2-bb-posix"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "bitflags",
  "enum-iterator",
@@ -342,7 +342,7 @@ dependencies = [
 [[package]]
 name = "iceoryx2-bb-system-types"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "iceoryx2-bb-container",
  "iceoryx2-bb-elementary",
@@ -354,7 +354,7 @@ dependencies = [
 [[package]]
 name = "iceoryx2-bb-testing"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "iceoryx2-pal-concurrency-sync",
  "iceoryx2-pal-configuration",
@@ -363,7 +363,7 @@ dependencies = [
 [[package]]
 name = "iceoryx2-bb-threadsafe"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "iceoryx2-bb-container",
  "iceoryx2-bb-log",
@@ -373,7 +373,7 @@ dependencies = [
 [[package]]
 name = "iceoryx2-cal"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "cdr",
  "iceoryx2-bb-container",
@@ -398,17 +398,17 @@ dependencies = [
 [[package]]
 name = "iceoryx2-pal-concurrency-sync"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 
 [[package]]
 name = "iceoryx2-pal-configuration"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 
 [[package]]
 name = "iceoryx2-pal-posix"
 version = "0.3.0"
-source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=46f8b60#46f8b60424fc2fbaa9fa250b65dea7a9fceb84dd"
+source = "git+https://github.com/eclipse-iceoryx/iceoryx2?rev=728df35#728df35da2b99bb47cd5d0221d8f7a7385edf075"
 dependencies = [
  "bindgen",
  "cc",

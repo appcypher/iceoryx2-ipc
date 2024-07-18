@@ -58,14 +58,14 @@ impl Listener {
         let node = NodeBuilder::new().create::<zero_copy::Service>()?;
 
         let request_service = node
-            .service_builder(path.try_into()?)
+            .service_builder(&path.try_into()?)
             .publish_subscribe::<Request>()
             .max_publishers(1)
             .max_subscribers(1)
             .open_or_create()?;
 
         let request_ack_service = node
-            .service_builder(format!("{}-ack", path).as_str().try_into()?)
+            .service_builder(&format!("{}-ack", path).as_str().try_into()?)
             .publish_subscribe::<Ack>()
             .max_publishers(1)
             .max_subscribers(1)
@@ -85,14 +85,14 @@ impl Client {
         let node = NodeBuilder::new().create::<zero_copy::Service>()?;
 
         let request_service = node
-            .service_builder(path.try_into()?)
+            .service_builder(&path.try_into()?)
             .publish_subscribe::<Request>()
             .max_publishers(1)
             .max_subscribers(1)
             .open_or_create()?;
 
         let request_ack_service = node
-            .service_builder(format!("{}-ack", path).as_str().try_into()?)
+            .service_builder(&format!("{}-ack", path).as_str().try_into()?)
             .publish_subscribe::<Ack>()
             .max_publishers(1)
             .max_subscribers(1)
